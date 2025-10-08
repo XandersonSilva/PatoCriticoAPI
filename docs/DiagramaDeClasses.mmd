@@ -1,0 +1,125 @@
+classDiagram
+    
+    class Jogo{
+        <<Entity>>
+        -Long id
+        -String titulo
+        -String imagem 
+        -Date   lançamento
+        -String descrição
+        -String desenvolvedora
+        -String publicadora
+        -String classificacaoEtaria
+        -Bigdecimal preco
+    }
+    class Tag {
+        <<Entity>>
+        -Long id
+        -String tag
+    }
+
+    class Genero{
+        <<Entity>>
+        -Long id
+        -String genero
+        -String descricao
+    }
+
+    class Usuario{
+        <<Entity>>
+        -Long id
+        -String nome
+        -String imagem
+        -String email
+        -String senha
+        -Papel papel
+    }
+
+    class Avaliacao{
+        <<Entity>>
+        -Long id
+        -Usuario autor
+        -String titulo
+        -String descricao
+        -Integer nota
+        -Date dataPostagem
+        -Voto voto
+    }
+
+    class Voto {
+        <<Entity>>
+        -Long id
+        -Usuario votante
+        -Avaliacao avaliacao
+        -TipoVoto tipo
+    }
+
+    class Denuncia {
+        <<Entity>>
+        -Long id
+        -Usuario denunciante
+        -Avaliacao avaliacao
+        -MotivoDenuncia motivo
+    }
+
+    class UsuarioJogo {
+        <<Entity>>
+        -StatusJogo status
+    }
+
+    class StatusJogo {
+        <<Enumeration>>
+        JOGANDO
+        FINALIZADO
+        LISTA_DE_DESEJOS
+    }
+
+
+    class TipoVoto {
+        <<Enumeration>>
+        UTIL
+        INUTIL
+    }
+
+    class Papel {
+        <<Enumeration>>
+        USUARIO
+        ADMINISTRADOR
+    }
+
+    class Plataforma{
+        <<Enumeration>>
+        PC
+        PLAYSTATION
+        XBOX
+        NINTENDO_SWITCH
+        MOBILE
+    }
+
+    class MotivoDenuncia {
+        <<Enumeration>>
+        LINGUAGEM_OFENSIVA
+        ASSEDIO
+        ENGANOSO
+        SPAM
+        COMPORTAMENTO_INAPROPRIADO
+        OUTRO
+    }
+
+Jogo "1" -- "0..*" Avaliacao
+Usuario "1" -- "0..*" Jogo 
+Avaliacao "1" -- "0..*" Voto 
+Avaliacao "1" -- "0..*" Denuncia 
+Denuncia "1" -- "0..*" MotivoDenuncia 
+Usuario "1" -- "0..*" Voto 
+
+UsuarioJogo "1" -- "1" StatusJogo
+Usuario "1" -- "0..*" UsuarioJogo
+Jogo "1" -- "0..*" UsuarioJogo
+
+Jogo "*" -- "*" Plataforma
+Jogo "*" -- "*" Genero
+Jogo "*" -- "*" Tag
+
+Voto "1" -- "1" TipoVoto
+Usuario "1" -- "1" Papel
