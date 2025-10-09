@@ -2,32 +2,142 @@ classDiagram
     
     class Jogo{
         <<Entity>>
-        -Long id
+        -UUID id
         -String titulo
         -String imagem 
         -Date   lançamento
         -String descrição
         -String desenvolvedora
         -String publicadora
-        -String classificacaoEtaria
+        -ClassificacaoEtaria classificacaoEtaria
         -Bigdecimal preco
     }
+
+    class ClassificacaoEtaria {
+        <<enumeration>>
+        LIVRE
+        DEZ
+        DOZE
+        QUATORZE
+        DEZESSEIS
+        DEZOITO
+    }
+
     class Tag {
-        <<Entity>>
-        -Long id
-        -String tag
+        <<enumeration>>
+        
+        Singleplayer
+        Multiplayer
+        Cooperativo
+        Cooperativo_Online
+        Cooperativo_Local
+        PvP
+        PvE
+        MMO
+        
+        2D
+        3D
+        2_5D
+        Pixel_Graphics
+        Realista
+        Estilizado
+        Anime
+        Desenho_Animado
+        Arte_Desenhada_a_Mão
+        Minimalista
+        
+        Primeira_Pessoa
+        Terceira_Pessoa
+        Visão_Superior
+        Isométrico
+        Side_Scroller
+        
+        Fantasia
+        Ficção_Científica
+        Cyberpunk
+        Pós-apocalíptico
+        Terror_Psicológico
+        Comédia
+        Sombrio
+        Fofo
+        Atmosférico
+        Militar
+        Mistério
+        
+        Construção_de_Baralhos
+        Criação
+        Gerenciamento_de_Recursos
+        Física
+        Furtividade
+        Escolhas_Importam
+        Finais_Múltiplos
+        Morte_Permanente
+        Geração_Procedural
+        Baseado_em_Turnos
+        
+        Indie
+        Casual
+        Retrô
+        Para_Toda_a_Família
+        Protagonista_Feminina
+        Trilha_Sonora_Marcante
+        Rico_em_História
+        Difícil
+        Curto
     }
 
     class Genero{
-        <<Entity>>
-        -Long id
-        -String genero
-        -String descricao
+        <<enumeration>>
+        Ação
+        Aventura
+        RPG
+        Estratégia
+        Simulação
+        Esportes
+        Corrida
+        Quebra-Cabeça
+        Luta
+        Ritmo
+        Terror
+        
+        FPS
+        TPS
+        Plataforma
+        Beat_em_up
+        Hack_and_Slash
+        Shoot_em_up
+        
+        Point_and_Click
+        Visual_Novel
+        Metroidvania
+        Walking_Simulator
+        
+        Action_RPG
+        JRPG
+        CRPG
+        RPG_Tático
+        Roguelike
+        MMORPG
+        
+        RTS
+        TBS
+        Tower_Defense
+        4X
+        MOBA
+        
+        Construção_e_Gerenciamento
+        Simulador_de_Vida
+        Simulador_de_Veículos
+        
+        Ação_Aventura
+        Sobrevivência
+        Battle_Royale
+        Mundo_Aberto
     }
 
     class Usuario{
         <<Entity>>
-        -Long id
+        -UUID id
         -String nome
         -String imagem
         -String email
@@ -37,7 +147,7 @@ classDiagram
 
     class Avaliacao{
         <<Entity>>
-        -Long id
+        -UUID id
         -Usuario autor
         -String titulo
         -String descricao
@@ -48,7 +158,7 @@ classDiagram
 
     class Voto {
         <<Entity>>
-        -Long id
+        -UUID id
         -Usuario votante
         -Avaliacao avaliacao
         -TipoVoto tipo
@@ -56,7 +166,7 @@ classDiagram
 
     class Denuncia {
         <<Entity>>
-        -Long id
+        -UUID id
         -Usuario denunciante
         -Avaliacao avaliacao
         -MotivoDenuncia motivo
@@ -64,6 +174,7 @@ classDiagram
 
     class UsuarioJogo {
         <<Entity>>
+        -UUID id
         -StatusJogo status
     }
 
@@ -96,6 +207,31 @@ classDiagram
         MOBILE
     }
 
+    class UsuarioConfirmacao{
+        <<Entity>>
+        -UUID id
+        -Usuario usuario
+        -UUID code
+        -Date dataExpiracao
+    }
+
+    class UsuarioEstadoEnum {
+        <<Enumeration>>
+        ATIVO,
+        INATIVO,
+        PENDENTE
+    }
+
+    class Email{
+        <<Entity>>
+        -UUID id
+        -String remetente
+        -Usuario destinatario
+        -String asunto
+        -String mensagem
+    }
+
+
     class MotivoDenuncia {
         <<Enumeration>>
         LINGUAGEM_OFENSIVA
@@ -120,6 +256,11 @@ Jogo "1" -- "0..*" UsuarioJogo
 Jogo "*" -- "*" Plataforma
 Jogo "*" -- "*" Genero
 Jogo "*" -- "*" Tag
+Jogo "1" -- "1" ClassificacaoEtaria
 
 Voto "1" -- "1" TipoVoto
+
 Usuario "1" -- "1" Papel
+Usuario "1" -- "1" UsuarioConfirmacao
+Usuario "1" -- "1" UsuarioEstadoEnum
+Usuario "1" -- "*" Email
