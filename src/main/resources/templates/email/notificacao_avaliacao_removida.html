@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sua avaliação foi removida</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #1c1c1c; font-family: Arial, Helvetica, sans-serif;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 20px 0;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; background-color: #000000; border: 1px solid #333333; border-radius: 8px; overflow: hidden;">                    
+                    <tr>
+                        <td align="center" style="background-color: #FFC107; padding: 25px 20px;">
+                            <h1 style="color: #000000; margin: 0; font-size: 26px; font-weight: bold;">Aviso Sobre Sua Avaliação</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 30px 30px 40px 30px; color: #f4f4f4;">
+                            <p th:text="'Olá, ' + ${nomeUsuario} + '!'" style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">
+                                Olá!
+                            </p>
+                            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">
+                                Gostaríamos de informar que sua avaliação intitulada <span th:text="${tituloAvaliacao}" style="font-weight: bold; color: #FFC107;"></span> foi removida da nossa plataforma.
+                            </p>
+                            <p style="margin: 0 0 15px 0; font-size: 16px; line-height: 1.6;">
+                                Após uma análise de nossa equipe de moderação, foi constatado que o conteúdo viola as diretrizes da nossa comunidade.
+                            </p>
+                            
+                            <p style="margin: 25px 0 20px 0; font-size: 16px; line-height: 1.6;">
+                                Para garantir que o Pato Crítico continue sendo um ambiente seguro e construtivo para todos, pedimos que revise nossas diretrizes da comunidade antes de futuras contribuições.
+                            </p>
+                            <p style="margin: 0; font-size: 16px; line-height: 1.6;">
+                                Agradecemos sua compreensão.
+                            </p>
+                            <p style="margin-top: 30px; font-size: 16px; line-height: 1.6;">
+                                Atenciosamente,<br>
+                                <strong>Equipe Pato Crítico</strong>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="background-color: #1a1a1a; padding: 15px 30px;">
+                            <p style="margin: 0; color: #888888; font-size: 12px;">
+                                © 2023 Pato Crítico. Todos os direitos reservados.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

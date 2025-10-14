@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.xanderson.PatoCritico.model.entity.DenunciaEntity;
+import edu.xanderson.PatoCritico.model.entitys.DenunciaEntity;
 
 public interface DenunciaRepository extends JpaRepository<DenunciaEntity, UUID>{
 

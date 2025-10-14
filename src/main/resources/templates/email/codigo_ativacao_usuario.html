@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seu Código de Verificação</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #1c1c1c; font-family: Arial, Helvetica, sans-serif;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td style="padding: 20px 0;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; background-color: #000000; border: 1px solid #333333; border-radius: 8px; overflow: hidden;">
+                
+                <tr>
+                    <td align="center" style="background-color: #FFC107; padding: 25px 20px;">
+                        <h1 style="color: #000000; margin: 0; font-size: 26px; font-weight: bold;">Confirme seu E-mail</h1>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="padding: 30px 30px 40px 30px; color: #f4f4f4;">
+                        <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">
+                            Olá, <strong th:text="${nomeUsuario}">Usuário</strong>!
+                        </p>
+                        <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 1.6;">
+                            Obrigado por se registrar no Pato Crítico. Para ativar sua conta, por favor, utilize o código de verificação abaixo:
+                        </p>
+                        
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+                            <tr>
+                                <td align="center" style="background-color: #2a2a2a; padding: 20px; border-radius: 6px;">
+                                    <p style="color: #FFC107; font-size: 32px; font-weight: bold; margin: 0; letter-spacing: 4px;" th:text="${codigoValidacao}"></p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p th:text="'Este código expirará em ' + ${tempoExpiracao} + ' minutos.'" style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #cccccc;">
+
+                        </p>
+                        <p style="margin: 0; font-size: 16px; line-height: 1.6;">
+                            Se você não criou uma conta, por favor, ignore este e-mail.
+                        </p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="center" style="background-color: #1a1a1a; padding: 15px 30px;">
+                        <p style="margin: 0; color: #888888; font-size: 12px;">
+                            © 2023 Pato Crítico. Todos os direitos reservados.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

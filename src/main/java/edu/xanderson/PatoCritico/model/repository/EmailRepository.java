@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.xanderson.PatoCritico.model.entity.EmailEntity;
+import edu.xanderson.PatoCritico.model.entitys.EmailEntity;
 
 public interface EmailRepository extends JpaRepository<EmailEntity, UUID>{
 

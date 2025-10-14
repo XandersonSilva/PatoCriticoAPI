@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.xanderson.PatoCritico.model.entity.TagEntity;
+import edu.xanderson.PatoCritico.model.entitys.TagEntity;
 
 public interface TagRepository extends JpaRepository<TagEntity, UUID>{
     

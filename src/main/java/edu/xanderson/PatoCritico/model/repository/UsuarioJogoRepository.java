@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.xanderson.PatoCritico.model.entity.UsuarioJogoEntity;
+import edu.xanderson.PatoCritico.model.entitys.UsuarioJogoEntity;
 
 public interface UsuarioJogoRepository extends JpaRepository<UsuarioJogoEntity, UUID>{
-
+    UsuarioJogoEntity findByDonoIdAndJogoId(UUID usuarioId, UUID jogoId);
     
 }
