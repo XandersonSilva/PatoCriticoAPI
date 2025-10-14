@@ -170,10 +170,14 @@ public class JogoServiceImpl implements JogoService{
         return jogo;
     }
 
-    private double notaMediaJogo(JogoEntity jogo){
+    protected double notaMediaJogo(JogoEntity jogo){
         int contador = 0;
         double notaMediaJogo = 0;
-        for (AvaliacaoEntity avaliacao : jogo.getAvaliacoes()) {
+
+        List<AvaliacaoEntity> avaliacoes = jogo.getAvaliacoes();
+        if (avaliacoes == null) return notaMediaJogo;
+
+        for (AvaliacaoEntity avaliacao : avaliacoes) {
             notaMediaJogo += avaliacao.getNota();
             contador ++;
         }
@@ -186,7 +190,7 @@ public class JogoServiceImpl implements JogoService{
 
     @Override
     public ResJogoDTO adicionarPlataformaJogo(ReqPlataformaDTO dto) {
-        PlataformaEntity plataforma = plataformaRepositiory.getReferenceById(dto.getId());
+        PlataformaEntity plataforma = plataformaRepositiory.findByPlataforma(dto.getPlataforma());
         JogoEntity jogo = jogoRepository.getReferenceById(dto.getJogoId());
 
         if (plataforma == null || jogo == null) throw new ResponseStatusException(

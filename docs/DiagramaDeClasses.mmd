@@ -163,7 +163,13 @@ classDiagram
         -Avaliacao avaliacao
         -TipoVoto tipo
     }
-
+    class UsuarioRecuperacaoSenha {
+        <<Entity>>
+        -UUID id
+        -UsuarioEntity usuario
+        -UUID token
+        -LocalDateTime expiracao
+    }
     class Denuncia {
         <<Entity>>
         -UUID id
@@ -263,4 +269,5 @@ Voto "1" -- "1" TipoVoto
 Usuario "1" -- "1" Papel
 Usuario "1" -- "1" UsuarioConfirmacao
 Usuario "1" -- "1" UsuarioEstadoEnum
+Usuario "1" -- "1" UsuarioRecuperacaoSenha
 Usuario "1" -- "*" Email

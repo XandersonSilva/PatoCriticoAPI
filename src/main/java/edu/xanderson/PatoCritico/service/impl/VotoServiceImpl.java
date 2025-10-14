@@ -16,6 +16,7 @@ import edu.xanderson.PatoCritico.model.mappers.VotoMapper;
 import edu.xanderson.PatoCritico.model.repository.AvaliacaoRepository;
 import edu.xanderson.PatoCritico.model.repository.VotoRepository;
 import edu.xanderson.PatoCritico.service.VotoService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,12 +29,9 @@ public class VotoServiceImpl implements VotoService{
     private final VotoMapper votoMapper;
     
     @Override
+    @Transactional
     public ResVotoDTO salvarVoto(ReqVotoDTO dto) {
         UsuarioEntity usuario = usuarioAutenticado.usuarioLogado();
-        if (usuario.getId() != dto.getVotante().getId()) throw new ResponseStatusException(
-            HttpStatus.BAD_REQUEST,
-            "O id de usuário não corresponde ao usuário logado!"
-        );
 
         AvaliacaoEntity avaliacao = avaliacaoRepository.getReferenceById(dto.getAvaliacao().getId());
         if (avaliacao == null)throw new ResponseStatusException(
@@ -47,6 +45,7 @@ public class VotoServiceImpl implements VotoService{
         voto.setVotante(usuario);
         voto.setTipo(dto.getTipo());
 
+        votoRepository.save(voto);
         
         return votoMapper.toResDto(voto);
     }

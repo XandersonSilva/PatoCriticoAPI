@@ -17,6 +17,7 @@ public interface JogoMapper {
     ReqJogoDTO toReqDTO(JogoEntity jogo);
 
     JogoEntity toEntity(ReqJogoDTO dto);
+    JogoEntity toEntity(ResJogoDTO dto);
     List<ResJogoDTO> toDTOList(List<JogoEntity> jogos);
     
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -1,5 +1,6 @@
 package edu.xanderson.PatoCritico.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import edu.xanderson.PatoCritico.model.mappers.JogoMapper;
 import edu.xanderson.PatoCritico.model.repository.JogoRepository;
 import edu.xanderson.PatoCritico.model.repository.UsuarioJogoRepository;
 import edu.xanderson.PatoCritico.service.UsuarioJogoService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -24,6 +26,7 @@ public class UsuarioJogoServiceImpl implements UsuarioJogoService{
     private final UsuarioAutenticadoImpl usuarioAutenticado;
 
     private final UsuarioJogoRepository usuarioJogoRepository;
+    private final JogoServiceImpl jogoService;
     private final JogoRepository jogoRepository;
     private final JogoMapper jogoMapper;
 
@@ -75,10 +78,29 @@ public class UsuarioJogoServiceImpl implements UsuarioJogoService{
     }
 
     @Override
+    @Transactional
     public List<ResJogoDTO> visualizarBibliotecaPessoal() {
-        UsuarioEntity usuario = usuarioAutenticado.usuarioLogado();
+        List<UsuarioJogoEntity> jogos_db = usuarioJogoRepository.findByDonoId(
+            usuarioAutenticado.usuarioLogado().getId()
+            );
+        List<JogoEntity> jogosEntities = new ArrayList<>();
+        if (jogos_db.size() > 0) {
+            for (UsuarioJogoEntity jogo : jogos_db) {
+                jogosEntities.add(jogo.getJogo());
+            }
+        }
+        List<ResJogoDTO> jogosResDto = new ArrayList();
+        for (ResJogoDTO jogoResDto : jogoMapper.toDTOList(jogosEntities)) {
+            jogoResDto.setNotaMedia(
+                jogoService.notaMediaJogo(
+                    jogoRepository.getReferenceById(jogoResDto.getId())
+                    )
+                );
+            jogosResDto.add(jogoResDto);
+        }
         
-        return jogoMapper.toDTOList(usuario.getJogos());
+        
+        return jogosResDto;
 
     }
     

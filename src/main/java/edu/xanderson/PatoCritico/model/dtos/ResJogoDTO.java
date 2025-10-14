@@ -29,6 +29,6 @@ public class ResJogoDTO {
 
     private BigDecimal preco;
 
-    private Double notaMedia;
+    private double notaMedia;
     
 }

@@ -16,6 +16,5 @@ public class ReqPlataformaDTO {
     @NotNull
     private PlataformaEnum plataforma;
 
-    @NotNull
     private UUID jogoId;
 }

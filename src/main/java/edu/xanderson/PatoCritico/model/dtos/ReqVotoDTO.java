@@ -2,7 +2,6 @@ package edu.xanderson.PatoCritico.model.dtos;
 
 import java.util.UUID;
 
-import edu.xanderson.PatoCritico.model.entitys.AvaliacaoEntity;
 import edu.xanderson.PatoCritico.model.enums.TipoVotoEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -20,5 +19,5 @@ public class ReqVotoDTO {
     private ReqUsuarioIdDTO votante;
 
     @NotNull
-    private AvaliacaoEntity avaliacao;
+    private ReqAvaliacaoIdDTO avaliacao;
 }

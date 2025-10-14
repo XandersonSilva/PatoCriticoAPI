@@ -1,7 +1,6 @@
 package edu.xanderson.PatoCritico.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 
@@ -41,7 +40,7 @@ public interface UsuarioController {
             @ApiResponse(responseCode = "500", ref = "internalServerError")
         }
     )
-    ResponseEntity<ResUsuarioDTO> excluirConta(UUID usuarioId);                 //Usuário
+    ResponseEntity<ResUsuarioDTO> excluirConta();                 //Usuário
     
     @Operation(
     summary = "Buscar todos os usuários",

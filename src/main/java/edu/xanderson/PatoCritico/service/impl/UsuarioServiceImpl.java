@@ -20,14 +20,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService{
     private final UsuarioAutenticadoImpl usuarioAutenticado;
-    private final AutenticacaoServiceImpl autenticacaoService;
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
 
     @Override
     public ResUsuarioDTO editarInformacoesPerfil(ReqUsuarioDTO dto) {
-        UsuarioEntity usuario = existeUsuario(dto.getId());
+        UsuarioEntity usuario = usuarioAutenticado.usuarioLogado();
         usuarioMapper.updateFromDto(dto, usuario);
         
         usuarioRepository.save(usuario);
@@ -35,8 +34,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public ResUsuarioDTO excluirConta(UUID usuarioId) {
-        UsuarioEntity usuario = existeUsuario(usuarioId);
+    public ResUsuarioDTO excluirConta() {
+        UsuarioEntity usuario = (UsuarioEntity) usuarioRepository.findByEmail(usuarioAutenticado.usuarioLogado().getEmail());
 
         usuarioRepository.delete(usuario);
         return usuarioMapper.toResDto(usuario);

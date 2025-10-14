@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import edu.xanderson.PatoCritico.model.enums.ClassificacaoEtariaEnum;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,7 @@ public class ReqJogoDTO {
     
     private String imagem;
     
-    @NotBlank
+    @NotNull
     private LocalDateTime lançamento;
     
     @NotBlank

@@ -20,6 +20,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -57,7 +58,7 @@ public class UsuarioEntity implements UserDetails{
         mappedBy = "destinatario", 
         cascade = CascadeType.ALL,
         orphanRemoval = true,
-        fetch = FetchType.LAZY
+        fetch = FetchType.EAGER
     )
     private List<EmailEntity> emails;
 
@@ -65,7 +66,7 @@ public class UsuarioEntity implements UserDetails{
         mappedBy = "dono", 
         cascade = CascadeType.ALL,
         orphanRemoval = true,
-        fetch = FetchType.LAZY
+        fetch = FetchType.EAGER
     )
     private List<JogoEntity> jogos;
 
@@ -73,7 +74,7 @@ public class UsuarioEntity implements UserDetails{
         mappedBy = "dono",
         cascade = CascadeType.ALL,
         orphanRemoval = true,
-        fetch = FetchType.LAZY
+        fetch = FetchType.EAGER
     )
     private List<UsuarioJogoEntity> relacaoJogoUsuario;
 
@@ -81,9 +82,20 @@ public class UsuarioEntity implements UserDetails{
         mappedBy = "votante",
         cascade = CascadeType.ALL,
         orphanRemoval = true,
-        fetch = FetchType.LAZY
+        fetch = FetchType.EAGER
     )
     private List<VotoEntity> votos;
+
+    @OneToMany(
+        mappedBy = "autor",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<AvaliacaoEntity> avaliacoes;
+
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private UsuarioRecuperacaoSenhaEntity recuperarSenha;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

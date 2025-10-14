@@ -66,7 +66,7 @@ public class JogoEntity {
         mappedBy = "jogo", 
         cascade = CascadeType.ALL,
         orphanRemoval = true,
-        fetch = FetchType.LAZY
+        fetch = FetchType.EAGER
     )
     private List<AvaliacaoEntity> avaliacoes;
 
