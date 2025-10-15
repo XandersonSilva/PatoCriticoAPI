@@ -3,6 +3,7 @@ package edu.xanderson.PatoCritico.model.dtos;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.List;
 
 import edu.xanderson.PatoCritico.model.enums.ClassificacaoEtariaEnum;
 import lombok.Getter;
@@ -26,6 +27,8 @@ public class ResJogoDTO {
     private String publicadora;
     
     private ClassificacaoEtariaEnum classificacaoEtaria;
+
+    private List<PlataformaEntity> plataformas;
 
     private BigDecimal preco;
 
