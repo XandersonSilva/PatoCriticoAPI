@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.annotations.Formula;
+
 import edu.xanderson.PatoCritico.model.enums.ClassificacaoEtariaEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -69,6 +71,9 @@ public class JogoEntity {
         fetch = FetchType.EAGER
     )
     private List<AvaliacaoEntity> avaliacoes;
+
+    @Formula("(SELECT COALESCE(AVG(a.nota), 0.0) FROM avaliacao_entity a WHERE a.jogo_id = id)")
+    private double notaMedia;
 
     @OneToOne
     private UsuarioJogoEntity relacaoJogoUsuario;

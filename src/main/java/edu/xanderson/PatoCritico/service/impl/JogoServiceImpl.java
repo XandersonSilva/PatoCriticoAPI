@@ -14,7 +14,6 @@ import edu.xanderson.PatoCritico.model.dtos.ReqPlataformaDTO;
 import edu.xanderson.PatoCritico.model.dtos.ReqTagJogoDTO;
 import edu.xanderson.PatoCritico.model.dtos.ResAvaliacaoDTO;
 import edu.xanderson.PatoCritico.model.dtos.ResJogoDTO;
-import edu.xanderson.PatoCritico.model.entitys.AvaliacaoEntity;
 import edu.xanderson.PatoCritico.model.entitys.GeneroEntity;
 import edu.xanderson.PatoCritico.model.entitys.JogoEntity;
 import edu.xanderson.PatoCritico.model.entitys.PlataformaEntity;
@@ -49,7 +48,6 @@ public class JogoServiceImpl implements JogoService{
         jogoRepository.save(jogo);
 
         ResJogoDTO jogoDTO = jogoMapper.toResDTO(jogo);
-        jogoDTO.setNotaMedia(notaMediaJogo(jogo));
 
         return jogoDTO;
     }
@@ -170,22 +168,6 @@ public class JogoServiceImpl implements JogoService{
         return jogo;
     }
 
-    protected double notaMediaJogo(JogoEntity jogo){
-        int contador = 0;
-        double notaMediaJogo = 0;
-
-        List<AvaliacaoEntity> avaliacoes = jogo.getAvaliacoes();
-        if (avaliacoes == null) return notaMediaJogo;
-
-        for (AvaliacaoEntity avaliacao : avaliacoes) {
-            notaMediaJogo += avaliacao.getNota();
-            contador ++;
-        }
-
-        if (contador > 0) notaMediaJogo = notaMediaJogo/contador;
-
-        return notaMediaJogo;
-    }
 
 
     @Override

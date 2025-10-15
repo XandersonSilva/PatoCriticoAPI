@@ -26,7 +26,6 @@ public class UsuarioJogoServiceImpl implements UsuarioJogoService{
     private final UsuarioAutenticadoImpl usuarioAutenticado;
 
     private final UsuarioJogoRepository usuarioJogoRepository;
-    private final JogoServiceImpl jogoService;
     private final JogoRepository jogoRepository;
     private final JogoMapper jogoMapper;
 
@@ -89,18 +88,8 @@ public class UsuarioJogoServiceImpl implements UsuarioJogoService{
                 jogosEntities.add(jogo.getJogo());
             }
         }
-        List<ResJogoDTO> jogosResDto = new ArrayList();
-        for (ResJogoDTO jogoResDto : jogoMapper.toDTOList(jogosEntities)) {
-            jogoResDto.setNotaMedia(
-                jogoService.notaMediaJogo(
-                    jogoRepository.getReferenceById(jogoResDto.getId())
-                    )
-                );
-            jogosResDto.add(jogoResDto);
-        }
         
-        
-        return jogosResDto;
+        return jogoMapper.toDTOList(jogosEntities);
 
     }
     
