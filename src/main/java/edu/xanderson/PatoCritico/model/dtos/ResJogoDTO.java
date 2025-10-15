@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
 
+import edu.xanderson.PatoCritico.model.entitys.PlataformaEntity;
 import edu.xanderson.PatoCritico.model.enums.ClassificacaoEtariaEnum;
 import lombok.Getter;
 import lombok.Setter;
