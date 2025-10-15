@@ -22,7 +22,7 @@ public class PlataformaEntity {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PlataformaEnum plataforma;
 }
