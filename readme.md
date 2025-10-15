@@ -3,6 +3,8 @@
 # Pato Crítico 🦆
 
 API de registro e consulta de avaliações de jogos, permitindo que usuários compartilhem suas opiniões e organizem sua biblioteca pessoal de jogos.
+A API Patocrítico foi desenvolvida como solução para o desafio técnico do Processo Seletivo 2025.2 para a área de Back-End da IncludeJr. 
+O projeto consiste na criação de uma API REST robusta para um site de avaliação de jogos, com o objetivo de centralizar e organizar dados de games, usuários e suas respectivas avaliações.
 
 ## 📜 Índice
 
