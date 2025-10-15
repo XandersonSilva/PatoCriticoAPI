@@ -97,6 +97,9 @@ public class UsuarioEntity implements UserDetails{
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private UsuarioRecuperacaoSenhaEntity recuperarSenha;
 
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private UsuarioConfirmacaoEntity confirmacao;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.papel.name()));
