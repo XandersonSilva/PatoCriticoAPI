@@ -16,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -59,7 +60,7 @@ public class JogoEntity {
     private List<TagEntity> tags;
 
     
-    @OneToMany
+    @ManyToMany
     private List<PlataformaEntity> plataformas;
 
     private BigDecimal preco = new BigDecimal(0.0);
@@ -75,8 +76,13 @@ public class JogoEntity {
     @Formula("(SELECT COALESCE(AVG(a.nota), 0.0) FROM avaliacao_entity a WHERE a.jogo_id = id)")
     private double notaMedia;
 
-    @OneToOne
-    private UsuarioJogoEntity relacaoJogoUsuario;
+    @OneToMany(
+        mappedBy = "jogo", 
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        fetch = FetchType.EAGER
+    )
+    private List<UsuarioJogoEntity> relacaoJogoUsuario;
 
     @ManyToOne
     private UsuarioEntity dono;
