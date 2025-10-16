@@ -94,7 +94,7 @@ public class UsuarioEntity implements UserDetails{
     private List<AvaliacaoEntity> avaliacoes;
 
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private UsuarioRecuperacaoSenhaEntity recuperarSenha;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

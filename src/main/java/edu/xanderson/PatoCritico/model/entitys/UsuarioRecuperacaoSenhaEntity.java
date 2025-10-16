@@ -21,7 +21,7 @@ public class UsuarioRecuperacaoSenhaEntity {
     UUID id;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private UsuarioEntity usuario;
 
     @Column(nullable = false)

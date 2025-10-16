@@ -39,11 +39,12 @@ public class UsuarioRecuperacaoSenhaServiceImpl implements UsuarioRecuperacaoSen
             HttpStatus.BAD_REQUEST,
             "O usuário informado não existe!"
         );
-        UsuarioRecuperacaoSenhaEntity recuperacao = usuarioRecuperacaoSenhaRepository.findByUsuario(usuario);
+        UsuarioRecuperacaoSenhaEntity recuperacao = usuario.getRecuperarSenha();
 
-        if (recuperacao != null) usuarioRecuperacaoSenhaRepository.delete(recuperacao);
-
-        recuperacao = new UsuarioRecuperacaoSenhaEntity();
+        if (recuperacao == null){ 
+            recuperacao = new UsuarioRecuperacaoSenhaEntity();
+        }
+        
 
         recuperacao.setExpiracao(LocalDateTime.now().plusMinutes(TEMPO_EXPIRACAO_MINUTOS));
         recuperacao.setToken(UUID.randomUUID());
